@@ -18,6 +18,14 @@ function renderWeather(weatherObj) {
     weather.innerHTML = ""
     input.value = ""
 
+    if (weatherObj.cod === '404') {
+        weather.textContent = 'Location not found'
+        weather.style.color = 'white';
+        weather.style.fontWeight = 'bold';
+        weather.style.marginTop = '10px';
+        return
+    }
+
     var city = document.createElement('h2')
     city.textContent = weatherObj.name + ', ' + weatherObj.sys.country
     weather.appendChild(city)
