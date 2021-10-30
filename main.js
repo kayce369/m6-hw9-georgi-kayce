@@ -10,7 +10,6 @@ form.onsubmit = function(e) {
         return response.json()
     })
     .then(function(result) {
-        console.log(result)
         renderWeather(result)
     })
 }
