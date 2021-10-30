@@ -5,7 +5,7 @@ var form = document.querySelector('form')
 form.onsubmit = function(e) {
     e.preventDefault()
     var query = input.value
-    fetch('http://api.openweathermap.org/data/2.5/weather?units=imperial&q=' + query + '&appid=4cbd70ae761a905f9d6ea3b3c536fa12')
+    fetch('https://api.openweathermap.org/data/2.5/weather?units=imperial&q=' + query + '&appid=4cbd70ae761a905f9d6ea3b3c536fa12')
     .then(function(response) {
         return response.json()
     })
@@ -35,7 +35,7 @@ function renderWeather(weatherObj) {
     weather.appendChild(current)
 
     var picture = document.createElement('img')
-    picture.src = 'http://openweathermap.org/img/w/' + weatherObj.weather[0].icon +'.png'
+    picture.src = 'https://openweathermap.org/img/w/' + weatherObj.weather[0].icon +'.png'
     picture.alt = weatherObj.weather[0].description + ' icon'
     weather.appendChild(picture)
 
