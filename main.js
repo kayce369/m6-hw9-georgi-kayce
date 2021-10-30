@@ -5,7 +5,7 @@ var form = document.querySelector('form')
 form.onsubmit = function(e) {
     e.preventDefault()
     var query = input.value
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=' + query + '&appid=4cbd70ae761a905f9d6ea3b3c536fa12')
+    fetch('http://api.openweathermap.org/data/2.5/weather?units=imperial&q=' + query + '&appid=4cbd70ae761a905f9d6ea3b3c536fa12')
     .then(function(response) {
         return response.json()
     })
@@ -17,6 +17,7 @@ form.onsubmit = function(e) {
 
 function renderWeather(weatherObj) {
     weather.innerHTML = ""
+    input.value = ""
 
     var city = document.createElement('h2')
     city.textContent = weatherObj.name + ', ' + weatherObj.sys.country
@@ -30,4 +31,12 @@ function renderWeather(weatherObj) {
     picture.src = 'http://openweathermap.org/img/w/' + weatherObj.weather[0].icon +'.png'
     picture.alt = weatherObj.weather[0].description + ' icon'
     weather.appendChild(picture)
+
+    var currentTemp = document.createElement('p')
+    currentTemp.textContent = 'Current Temperature: ' + weatherObj.main.temp + 'º F'
+    weather.appendChild(currentTemp)
+
+    var feelsLike = document.createElement('p')
+    feelsLike.textContent = 'Feels Like: ' + weatherObj.main.feels_like + 'º F'
+    weather.appendChild(feelsLike)
 }
